@@ -27,6 +27,13 @@
                         <p>{{ __('messages.dashboard') }}</p>
                     </a>
                 </li>
+
+                <li class="nav-item">
+                    <a href="{{ route('grades.index') }}" class="nav-link {{ request()->routeIs('grades.index') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-graduation-cap"></i>
+                        <p>{{ __('messages.grades') }}</p>
+                    </a>
+                </li>
                 
                 <li class="nav-item">
                     <a href="{{ route('profile.edit') }}" class="nav-link {{ request()->routeIs('profile.edit') ? 'active' : '' }}">
