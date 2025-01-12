@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Backend\GradeController;
+use App\Http\Controllers\Backend\ClassroomController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -21,6 +22,9 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function() {
         
         // Grades Routes
         Route::resource('backend/grades', GradeController::class);
+        
+        // Classrooms Routes
+        Route::resource('backend/classrooms', ClassroomController::class);
     });
 });
 
