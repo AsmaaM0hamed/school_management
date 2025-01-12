@@ -53,8 +53,7 @@ class GradeController extends Controller
                     'required',
                     Rule::unique('grades')->ignore($grade->id)->whereNull('deleted_at'),
                 ],
-                'description' => 'nullable',
-                'is_active' => 'boolean'
+                'description' => 'nullable'
             ]);
 
             $validated['is_active'] = $request->has('is_active');
