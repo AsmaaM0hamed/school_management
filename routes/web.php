@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Backend\GradeController;
 use App\Http\Controllers\Backend\ClassroomController;
+use App\Http\Controllers\Backend\SectionController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -25,6 +26,10 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function() {
         
         // Classrooms Routes
         Route::resource('backend/classrooms', ClassroomController::class);
+        
+        // Sections Routes
+        Route::resource('backend/sections', SectionController::class);
+        Route::get('backend/get-classrooms/{grade_id}', [SectionController::class, 'getClassrooms'])->name('get.classrooms');
     });
 });
 

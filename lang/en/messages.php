@@ -25,6 +25,10 @@ return [
     'created_at' => 'Created At',
     'updated_at' => 'Updated At',
     'update' => 'Update',
+    'name' => 'Name',
+    'code' => 'Code',
+    'notes' => 'Notes',
+    'close' => 'Close',
 
     // Grades
     'grades' => 'Grades',
@@ -47,6 +51,7 @@ return [
     'grade_delete_error' => 'Error deleting grade',
     'grade_updated_successfully' => 'Grade updated successfully',
     'grade_update_error' => 'Error updating grade',
+    'delete_grade_confirm' => 'Are you sure you want to delete this grade',
 
     // Classrooms
     'classrooms' => 'Classrooms',
@@ -59,7 +64,21 @@ return [
     'classroom_capacity' => 'Capacity',
     'classroom_description' => 'Description',
     'no_classrooms_found' => 'No classrooms found',
-    'delete_classroom_confirm' => 'Are you sure you want to delete classroom ":name"?',
+    'delete_classroom_confirm' => 'Are you sure you want to delete classroom',
+
+    // Sections
+    'sections' => 'Sections',
+    'section' => 'Section',
+    'add_section' => 'Add Section',
+    'edit_section' => 'Edit Section',
+    'delete_section' => 'Delete Section',
+    'section_name' => 'Section Name',
+    'section_code' => 'Section Code',
+    'section_description' => 'Section Description',
+    'no_sections_found' => 'No sections found',
+    'choose_grade' => 'Choose Grade',
+    'choose_classroom' => 'Choose Classroom',
+    'delete_section_confirm' => 'Are you sure you want to delete this section',
 
     // Success Messages
     'success' => 'Success',
@@ -84,5 +103,5 @@ return [
     'error_while_deleting_grade' => 'Error while deleting grade',
     'error_while_creating_classroom' => 'Error while creating classroom',
     'error_while_updating_classroom' => 'Error while updating classroom',
-    'error_while_deleting_classroom' => 'Error while deleting classroom',
+    'error_while_deleting_classroom' => 'Error while deleting classroom'
 ];

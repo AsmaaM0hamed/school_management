@@ -11,8 +11,9 @@ return new class extends Migration
         Schema::create('classrooms', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('grade_id')->constrained()->cascadonDelete();
-            $table->integer('capacity');
+            $table->string('code')->unique();
+            $table->foreignId('grade_id')->constrained()->cascadeOnDelete();
+            $table->integer('capacity')->default(30);
             $table->text('description')->nullable();
             $table->boolean('is_active')->default(true);
             $table->softDeletes();
