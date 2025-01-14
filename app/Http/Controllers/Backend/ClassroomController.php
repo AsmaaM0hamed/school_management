@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\Backend\Classroom;
-use App\Models\Backend\Grade;
+use App\Models\BackEnd\Classroom;
+use App\Models\BackEnd\Grade;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 

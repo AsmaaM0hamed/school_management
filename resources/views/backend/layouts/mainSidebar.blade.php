@@ -41,6 +41,13 @@
                         <p>{{ __('messages.classrooms') }}</p>
                     </a>
                 </li>
+
+                <li class="nav-item">
+                    <a href="{{ route('sections.index') }}" class="nav-link {{ request()->routeIs('sections.index') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-door-open"></i>
+                        <p>{{ __('messages.sections') }}</p>
+                    </a>
+                </li>
                 
                 <li class="nav-item">
                     <a href="{{ route('profile.edit') }}" class="nav-link {{ request()->routeIs('profile.edit') ? 'active' : '' }}">
