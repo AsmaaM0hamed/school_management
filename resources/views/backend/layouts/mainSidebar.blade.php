@@ -30,11 +30,11 @@
 
                 <li class="nav-item">
                     <a href="{{ route('grades.index') }}" class="nav-link {{ request()->routeIs('grades.index') ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-graduation-cap"></i>
+                        <i class="nav-icon fas fa-school"></i>
                         <p>{{ __('messages.grades') }}</p>
                     </a>
                 </li>
-                
+
                 <li class="nav-item">
                     <a href="{{ route('classrooms.index') }}" class="nav-link {{ request()->routeIs('classrooms.index') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-chalkboard"></i>
@@ -44,11 +44,25 @@
 
                 <li class="nav-item">
                     <a href="{{ route('sections.index') }}" class="nav-link {{ request()->routeIs('sections.index') ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-door-open"></i>
+                        <i class="nav-icon fas fa-puzzle-piece"></i>
                         <p>{{ __('messages.sections') }}</p>
                     </a>
                 </li>
-                
+
+                <li class="nav-item">
+                    <a href="{{ route('teachers.index') }}" class="nav-link {{ request()->routeIs('teachers.index') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-chalkboard-teacher"></i>
+                        <p>{{ __('messages.teachers') }}</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{ route('specializations.index') }}" class="nav-link {{ request()->routeIs('specializations.index') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-book-reader"></i>
+                        <p>{{ __('messages.specializations') }}</p>
+                    </a>
+                </li>
+
                 <li class="nav-item">
                     <a href="{{ route('profile.edit') }}" class="nav-link {{ request()->routeIs('profile.edit') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-user"></i>

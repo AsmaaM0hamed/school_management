@@ -80,6 +80,43 @@ return [
     'choose_classroom' => 'Choose Classroom',
     'delete_section_confirm' => 'Are you sure you want to delete this section',
 
+    // Teachers
+    'teachers' => 'Teachers',
+    'teacher' => 'Teacher',
+    'add_teacher' => 'Add Teacher',
+    'edit_teacher' => 'Edit Teacher',
+    'delete_teacher' => 'Delete Teacher',
+    'teacher_name' => 'Teacher Name',
+    'no_teachers_found' => 'No Teachers Found',
+    'select_teacher' => 'Select Teacher',
+    'teacher_created_successfully' => 'Teacher Created Successfully',
+    'teacher_updated_successfully' => 'Teacher Updated Successfully',
+    'teacher_deleted_successfully' => 'Teacher Deleted Successfully',
+    'delete_teacher_confirm' => 'Are you sure you want to delete this teacher',
+    'joining_date' => 'Joining Date',
+    'phone' => 'Phone',
+    'address' => 'Address',
+    'gender' => 'Gender',
+    'male' => 'Male',
+    'female' => 'Female',
+    'select_gender' => 'Select Gender',
+
+    // Specializations
+    'specializations' => 'Specializations',
+    'specialization' => 'Specialization',
+    'add_specialization' => 'Add Specialization',
+    'edit_specialization' => 'Edit Specialization',
+    'delete_specialization' => 'Delete Specialization',
+    'specialization_name' => 'Specialization Name',
+    'no_specializations_found' => 'No Specializations Found',
+    'select_specialization' => 'Select Specialization',
+    'specialization_created_successfully' => 'Specialization Created Successfully',
+    'specialization_updated_successfully' => 'Specialization Updated Successfully',
+    'specialization_deleted_successfully' => 'Specialization Deleted Successfully',
+    'delete_specialization_confirm' => 'Are you sure you want to delete this specialization',
+    'cannot_delete_related' => 'Cannot delete specialization related to teachers',
+    'teachers_count' => 'Teachers Count',
+
     // Success Messages
     'success' => 'Success',
     'created_successfully' => 'Created successfully',
@@ -91,6 +128,12 @@ return [
     'classroom_created' => 'Classroom created successfully',
     'classroom_updated' => 'Classroom updated successfully',
     'classroom_deleted' => 'Classroom deleted successfully',
+    'teacher_created' => 'Teacher created successfully',
+    'teacher_updated' => 'Teacher updated successfully',
+    'teacher_deleted' => 'Teacher deleted successfully',
+    'specialization_created' => 'Specialization created successfully',
+    'specialization_updated' => 'Specialization updated successfully',
+    'specialization_deleted' => 'Specialization deleted successfully',
 
     // Error Messages
     'error' => 'Error',
@@ -103,5 +146,11 @@ return [
     'error_while_deleting_grade' => 'Error while deleting grade',
     'error_while_creating_classroom' => 'Error while creating classroom',
     'error_while_updating_classroom' => 'Error while updating classroom',
-    'error_while_deleting_classroom' => 'Error while deleting classroom'
+    'error_while_deleting_classroom' => 'Error while deleting classroom',
+    'error_while_creating_teacher' => 'Error while creating teacher',
+    'error_while_updating_teacher' => 'Error while updating teacher',
+    'error_while_deleting_teacher' => 'Error while deleting teacher',
+    'error_while_creating_specialization' => 'Error while creating specialization',
+    'error_while_updating_specialization' => 'Error while updating specialization',
+    'error_while_deleting_specialization' => 'Error while deleting specialization'
 ];

@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Backend\GradeController;
 use App\Http\Controllers\Backend\ClassroomController;
 use App\Http\Controllers\Backend\SectionController;
+use App\Http\Controllers\Backend\TeacherController;
+use App\Http\Controllers\Backend\SpecializationController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -30,6 +32,12 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function() {
         // Sections Routes
         Route::resource('backend/sections', SectionController::class);
         Route::get('backend/get-classrooms/{grade_id}', [SectionController::class, 'getClassrooms'])->name('get.classrooms');
+        
+        // Teachers Routes
+        Route::resource('backend/teachers', TeacherController::class);
+        
+        // Specializations Routes
+        Route::resource('backend/specializations', SpecializationController::class);
     });
 });
 
