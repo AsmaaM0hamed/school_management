@@ -64,6 +64,13 @@
                 </li>
 
                 <li class="nav-item">
+                    <a href="{{ route('parents.index') }}" class="nav-link {{ request()->routeIs('parents.index') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-users"></i>
+                        <p>{{ __('messages.parents') }}</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
                     <a href="{{ route('profile.edit') }}" class="nav-link {{ request()->routeIs('profile.edit') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-user"></i>
                         <p>{{ __('messages.profile') }}</p>
