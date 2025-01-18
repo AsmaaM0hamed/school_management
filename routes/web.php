@@ -6,6 +6,7 @@ use App\Http\Controllers\Backend\ClassroomController;
 use App\Http\Controllers\Backend\SectionController;
 use App\Http\Controllers\Backend\TeacherController;
 use App\Http\Controllers\Backend\SpecializationController;
+use App\Http\Controllers\Backend\ParentController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -38,6 +39,9 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function() {
         
         // Specializations Routes
         Route::resource('backend/specializations', SpecializationController::class);
+        
+        // Parents Routes
+        Route::resource('parents', ParentController::class);
     });
 });
 
