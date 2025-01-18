@@ -22,7 +22,8 @@ class TeacherController extends Controller
     {
         $specializations = Specialization::all();
         $grades = Grade::all();
-        return view('backend.teachers.create', compact('specializations', 'grades'));
+        $statusOptions = Teacher::getStatusOptions();
+        return view('backend.teachers.create', compact('specializations', 'grades', 'statusOptions'));
     }
 
     public function store(Request $request)
@@ -38,6 +39,8 @@ class TeacherController extends Controller
             'gender' => 'required|in:male,female',
             'status' => 'required|in:active,suspended'
         ]);
+
+        $validatedData['status'] = $validatedData['status'] ?? Teacher::STATUS_ACTIVE;
 
         Teacher::create($validatedData);
         return redirect()->route('teachers.index')->with('success', __('messages.created'));

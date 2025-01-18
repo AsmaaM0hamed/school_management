@@ -24,6 +24,7 @@ class Teacher extends Model
 
     protected $casts = [
         'joining_date' => 'date',
+        'status' => 'string'
     ];
 
     protected $dates = ['deleted_at'];
@@ -39,5 +40,18 @@ class Teacher extends Model
     public function grade()
     {
         return $this->belongsTo(Grade::class);
+    }
+
+    public function sections()
+    {
+        return $this->belongsToMany(Section::class, 'section_teacher');
+    }
+
+    public static function getStatusOptions()
+    {
+        return [
+            self::STATUS_ACTIVE => __('messages.active'),
+            self::STATUS_SUSPENDED => __('messages.suspended')
+        ];
     }
 }

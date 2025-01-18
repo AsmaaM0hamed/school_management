@@ -4,31 +4,31 @@
     <!-- Select2 -->
     <link rel="stylesheet" href="{{ asset('plugins/select2/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
-    <style>
-        .card-success:not(.card-outline) > .card-header {
-            background-color: #28a745;
-        }
-        .btn-success {
-            background-color: #28a745;
-            border-color: #28a745;
-        }
-        .btn-success:hover {
-            background-color: #218838;
-            border-color: #1e7e34;
-        }
-    </style>
 @endsection
 
 @section('title')
     {{ __('messages.add_teacher') }}
 @endsection
 
-@section('page_name')
-    {{ __('messages.add_teacher') }}
-@endsection
-
 @section('content')
 <div class="content-wrapper" style="margin-left: 0;">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">{{ __('messages.add_teacher') }}</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">{{ __('messages.home') }}</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('teachers.index') }}">{{ __('messages.teachers') }}</a></li>
+                        <li class="breadcrumb-item active">{{ __('messages.add_teacher') }}</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <section class="content">
         <div class="container-fluid">
             <div class="row">
@@ -40,18 +40,7 @@
                         <form action="{{ route('teachers.store') }}" method="POST" class="needs-validation" novalidate>
                             @csrf
                             <div class="card-body">
-                                @if($errors->any())
-                                    <div class="alert alert-danger">
-                                        <ul class="mb-0">
-                                            @foreach($errors->all() as $error)
-                                                <li>{{ $error }}</li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
-                                @endif
-
                                 <div class="row">
-                                    <!-- Personal Information -->
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="name">{{ __('messages.teacher_name') }} <span class="text-danger">*</span></label>
@@ -65,7 +54,7 @@
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="email">{{ __('messages.email') }} <span class="text-danger">*</span></label>
+                                            <label for="email">{{ __('messages.teacher_email') }} <span class="text-danger">*</span></label>
                                             <input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror" 
                                                 value="{{ old('email') }}" required>
                                             @error('email')
@@ -76,9 +65,9 @@
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="phone">{{ __('messages.phone') }}</label>
-                                            <input type="text" name="phone" id="phone" class="form-control @error('phone') is-invalid @enderror" 
-                                                value="{{ old('phone') }}" dir="ltr">
+                                            <label for="phone">{{ __('messages.teacher_phone') }} <span class="text-danger">*</span></label>
+                                            <input type="tel" name="phone" id="phone" class="form-control @error('phone') is-invalid @enderror" 
+                                                value="{{ old('phone') }}" required>
                                             @error('phone')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
@@ -87,8 +76,30 @@
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="gender">{{ __('messages.gender') }} <span class="text-danger">*</span></label>
-                                            <select name="gender" id="gender" class="form-control select2 @error('gender') is-invalid @enderror" required>
+                                            <label for="joining_date">{{ __('messages.teacher_joining_date') }} <span class="text-danger">*</span></label>
+                                            <input type="date" name="joining_date" id="joining_date" class="form-control @error('joining_date') is-invalid @enderror" 
+                                                value="{{ old('joining_date') }}" required>
+                                            @error('joining_date')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="address">{{ __('messages.teacher_address') }}</label>
+                                            <textarea name="address" id="address" class="form-control @error('address') is-invalid @enderror" 
+                                                rows="1">{{ old('address') }}</textarea>
+                                            @error('address')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="gender">{{ __('messages.teacher_gender') }} <span class="text-danger">*</span></label>
+                                            <select name="gender" id="gender" class="form-control @error('gender') is-invalid @enderror" required>
                                                 <option value="">{{ __('messages.select_gender') }}</option>
                                                 <option value="male" {{ old('gender') == 'male' ? 'selected' : '' }}>{{ __('messages.male') }}</option>
                                                 <option value="female" {{ old('gender') == 'female' ? 'selected' : '' }}>{{ __('messages.female') }}</option>
@@ -101,18 +112,7 @@
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="status">{{ __('messages.status') }}</label>
-                                            <select class="form-control" id="status" name="status" required>
-                                                <option value="active" selected>{{ __('messages.active') }}</option>
-                                                <option value="suspended">{{ __('messages.suspended') }}</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <!-- Academic Information -->
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="specialization_id">{{ __('messages.specialization') }} <span class="text-danger">*</span></label>
+                                            <label for="specialization_id">{{ __('messages.teacher_specialization') }} <span class="text-danger">*</span></label>
                                             <select name="specialization_id" id="specialization_id" class="form-control select2 @error('specialization_id') is-invalid @enderror" required>
                                                 <option value="">{{ __('messages.select_specialization') }}</option>
                                                 @foreach($specializations as $specialization)
@@ -129,7 +129,7 @@
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="grade_id">{{ __('messages.grade') }} <span class="text-danger">*</span></label>
+                                            <label for="grade_id">{{ __('messages.teacher_grade') }} <span class="text-danger">*</span></label>
                                             <select name="grade_id" id="grade_id" class="form-control select2 @error('grade_id') is-invalid @enderror" required>
                                                 <option value="">{{ __('messages.select_grade') }}</option>
                                                 @foreach($grades as $grade)
@@ -146,20 +146,16 @@
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="joining_date">{{ __('messages.joining_date') }} <span class="text-danger">*</span></label>
-                                            <input type="date" name="joining_date" id="joining_date" class="form-control @error('joining_date') is-invalid @enderror" 
-                                                value="{{ old('joining_date') }}" required>
-                                            @error('joining_date')
-                                                <div class="invalid-feedback">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="address">{{ __('messages.address') }}</label>
-                                            <textarea name="address" id="address" rows="1" class="form-control @error('address') is-invalid @enderror">{{ old('address') }}</textarea>
-                                            @error('address')
+                                            <label for="status">{{ __('messages.teacher_status') }} <span class="text-danger">*</span></label>
+                                            <select name="status" id="status" class="form-control @error('status') is-invalid @enderror" required>
+                                                <option value="">{{ __('messages.select_status') }}</option>
+                                                @foreach($statusOptions as $value => $label)
+                                                    <option value="{{ $value }}" {{ old('status') == $value ? 'selected' : '' }}>
+                                                        {{ __('messages.' . $label) }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                            @error('status')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
                                         </div>
@@ -171,7 +167,7 @@
                                 <button type="submit" class="btn btn-success">
                                     <i class="fas fa-save"></i> {{ __('messages.save') }}
                                 </button>
-                                <a href="{{ route('teachers.index') }}" class="btn btn-secondary">
+                                <a href="{{ route('teachers.index') }}" class="btn btn-default">
                                     <i class="fas fa-times"></i> {{ __('messages.cancel') }}
                                 </a>
                             </div>
@@ -191,7 +187,9 @@
         $(function () {
             //Initialize Select2 Elements
             $('.select2').select2({
-                theme: 'bootstrap4'
+                theme: 'bootstrap4',
+                language: "{{ app()->getLocale() }}",
+                dir: "{{ app()->getLocale() == 'ar' ? 'rtl' : 'ltr' }}",
             });
         });
     </script>

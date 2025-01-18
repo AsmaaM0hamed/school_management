@@ -4,6 +4,39 @@
     <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+    <style>
+        .teachers-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+        .teachers-list .badge {
+            font-size: 0.9em;
+            padding: 5px 10px;
+        }
+        .form-check-label {
+            margin-right: 15px;
+            cursor: pointer;
+        }
+        .btn-link {
+            color: #17a2b8;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .btn-link:hover {
+            color: #138496;
+            text-decoration: none;
+        }
+        .accordion .card-header {
+            padding: 0;
+        }
+        .accordion .btn-link {
+            padding: 1rem;
+        }
+        .section-table {
+            margin-top: 1rem;
+        }
+    </style>
 @endsection
 
 @section('title')
@@ -52,6 +85,7 @@
                                                             <th>#</th>
                                                             <th>{{ __('messages.name') }}</th>
                                                             <th>{{ __('messages.classroom') }}</th>
+                                                            <th>{{ __('messages.teachers') }}</th>
                                                             <th>{{ __('messages.status') }}</th>
                                                             <th>{{ __('messages.actions') }}</th>
                                                         </tr>
@@ -63,6 +97,21 @@
                                                                 <td>{{ $section->name }}</td>
                                                                 <td>{{ $section->classroom->name }}</td>
                                                                 <td>
+                                                                    @if($section->teachers->count() > 0)
+                                                                        <div class="teachers-list">
+                                                                            @foreach($section->teachers as $teacher)
+                                                                                <span class="badge badge-info">
+                                                                                    {{ $teacher->name }}
+                                                                                </span>
+                                                                            @endforeach
+                                                                        </div>
+                                                                    @else
+                                                                        <span class="badge badge-warning">
+                                                                            {{ __('messages.no_teachers_assigned') }}
+                                                                        </span>
+                                                                    @endif
+                                                                </td>
+                                                                <td>
                                                                     @if($section->status)
                                                                         <span class="badge badge-success">{{ __('messages.active') }}</span>
                                                                     @else
@@ -70,10 +119,9 @@
                                                                     @endif
                                                                 </td>
                                                                 <td class="text-center">
-                                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
-                                                                        data-target="#editSectionModal{{ $section->id }}">
+                                                                    <a href="{{ route('sections.edit', $section->id) }}" class="btn btn-info btn-sm">
                                                                         <i class="fas fa-edit"></i>
-                                                                    </button>
+                                                                    </a>
                                                                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
                                                                         data-target="#deleteSectionModal{{ $section->id }}">
                                                                         <i class="fas fa-trash"></i>
@@ -82,7 +130,7 @@
                                                             </tr>
                                                         @empty
                                                             <tr>
-                                                                <td colspan="5" class="text-center">{{ __('messages.no_sections_found') }}</td>
+                                                                <td colspan="6" class="text-center">{{ __('messages.no_sections_found') }}</td>
                                                             </tr>
                                                         @endforelse
                                                     </tbody>
@@ -167,25 +215,4 @@
             $('#collapse{{ $grades->first()->id }}').addClass('show');
         });
     </script>
-
-    <style>
-        .btn-link {
-            color: #17a2b8;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .btn-link:hover {
-            color: #138496;
-            text-decoration: none;
-        }
-        .accordion .card-header {
-            padding: 0;
-        }
-        .accordion .btn-link {
-            padding: 1rem;
-        }
-        .section-table {
-            margin-top: 1rem;
-        }
-    </style>
 @endsection

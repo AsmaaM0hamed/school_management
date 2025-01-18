@@ -4,6 +4,33 @@
     {{ __('messages.edit_section') }}
 @endsection
 
+@section('css')
+    <style>
+        .teachers-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
+            padding: 15px;
+        }
+        .checkbox-wrapper {
+            display: flex;
+            align-items: center;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .checkbox-wrapper input[type="checkbox"] {
+            margin-right: 10px;
+            width: 18px;
+            height: 18px;
+        }
+        .checkbox-wrapper label {
+            margin-bottom: 0;
+            cursor: pointer;
+        }
+    </style>
+@endsection
+
 @section('content')
 <div class="content-wrapper" style="margin-left: 0;">
     <div class="content-header">
@@ -98,6 +125,27 @@
                                             @enderror
                                         </div>
                                     </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>{{ __('messages.teachers') }}</label>
+                                    <div class="teachers-list">
+                                        @foreach($teachers as $teacher)
+                                            <div class="checkbox-wrapper">
+                                                <input type="checkbox" 
+                                                       name="teacher_ids[]" 
+                                                       value="{{ $teacher->id }}" 
+                                                       id="teacher{{ $teacher->id }}"
+                                                       {{ in_array($teacher->id, $section->teachers->pluck('id')->toArray()) ? 'checked' : '' }}>
+                                                <label for="teacher{{ $teacher->id }}">
+                                                    {{ $teacher->name }} - {{ $teacher->specialization->name }}
+                                                </label>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                    @error('teacher_ids')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
 
                                 <div class="form-group mb-0">
