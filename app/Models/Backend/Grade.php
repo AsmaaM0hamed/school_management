@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Models\BackEnd;
+namespace App\Models\Backend;
 
 use App\Models\BackEnd\Classroom;
 use App\Models\BackEnd\Section;
+use App\Models\BackEnd\Teacher;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -14,6 +15,8 @@ class Grade extends Model
 
     protected $fillable = [
         'name',
+        'notes',
+        'grade_id',
         'code',
         'description',
         'is_active'
@@ -26,6 +29,12 @@ class Grade extends Model
     public function classrooms()
     {
         return $this->hasMany(Classroom::class);
+    }
+
+
+    public function teachers()
+    {
+        return $this->hasMany(Teacher::class);
     }
 
     public function sections()

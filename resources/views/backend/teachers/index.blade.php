@@ -4,58 +4,26 @@
     <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
-    <style>
-        .teachers-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 5px;
-        }
-        .teachers-list .badge {
-            font-size: 0.9em;
-            padding: 5px 10px;
-        }
-        .form-check-label {
-            margin-right: 15px;
-            cursor: pointer;
-        }
-        .btn-link {
-            color: #17a2b8;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .btn-link:hover {
-            color: #138496;
-            text-decoration: none;
-        }
-        .accordion .card-header {
-            padding: 0;
-        }
-        .accordion .btn-link {
-            padding: 1rem;
-        }
-        .section-table {
-            margin-top: 1rem;
-        }
-    </style>
 @endsection
 
 @section('title')
-    {{ __('messages.sections') }}
+    {{ __('messages.teachers') }}
 @endsection
 
 @section('page_name')
-    {{ __('messages.sections') }}
+    {{ __('messages.teachers') }}
 @endsection
 
 @section('content')
+<div class="content-wrapper" style="margin-left: 0;">
     <section class="content">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <a href="{{ route('sections.create') }}" class="btn btn-success">
-                                <i class="fas fa-plus"></i> {{ __('messages.add_section') }}
+                            <a href="{{ route('teachers.create') }}" class="btn btn-success">
+                                <i class="fas fa-plus"></i> {{ __('messages.add_teacher') }}
                             </a>
                         </div>
                         <div class="card-body">
@@ -69,7 +37,7 @@
                                                         aria-expanded="true" aria-controls="collapse{{ $grade->id }}">
                                                     <i class="fas fa-school"></i> {{ $grade->name }}
                                                     <span class="badge badge-info float-right">
-                                                        {{ $grade->sections->count() }} {{ __('messages.sections') }}
+                                                        {{ $grade->teachers->count() }} {{ __('messages.teachers') }}
                                                     </span>
                                                 </button>
                                             </h2>
@@ -79,58 +47,50 @@
                                              aria-labelledby="heading{{ $grade->id }}" 
                                              data-parent="#gradesAccordion">
                                             <div class="card-body">
-                                                <table class="table table-bordered table-striped section-table">
+                                                <table class="table table-bordered table-striped teacher-table">
                                                     <thead>
                                                         <tr>
                                                             <th>#</th>
                                                             <th>{{ __('messages.name') }}</th>
-                                                            <th>{{ __('messages.classroom') }}</th>
-                                                            <th>{{ __('messages.teachers') }}</th>
+                                                            <th>{{ __('messages.email') }}</th>
+                                                            <th>{{ __('messages.phone') }}</th>
+                                                            <th>{{ __('messages.specialization') }}</th>
+                                                            <th>{{ __('messages.gender') }}</th>
+                                                            <th>{{ __('messages.joining_date') }}</th>
                                                             <th>{{ __('messages.status') }}</th>
                                                             <th>{{ __('messages.actions') }}</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        @forelse($grade->sections as $section)
+                                                        @forelse($grade->teachers as $teacher)
                                                             <tr>
                                                                 <td>{{ $loop->iteration }}</td>
-                                                                <td>{{ $section->name }}</td>
-                                                                <td>{{ $section->classroom->name }}</td>
+                                                                <td>{{ $teacher->name }}</td>
+                                                                <td>{{ $teacher->email }}</td>
+                                                                <td>{{ $teacher->phone ?? '-' }}</td>
+                                                                <td>{{ $teacher->specialization->name }}</td>
+                                                                <td>{{ __('messages.' . $teacher->gender) }}</td>
+                                                                <td>{{ $teacher->joining_date->format('Y-m-d') }}</td>
                                                                 <td>
-                                                                    @if($section->teachers->count() > 0)
-                                                                        <div class="teachers-list">
-                                                                            @foreach($section->teachers as $teacher)
-                                                                                <span class="badge badge-info">
-                                                                                    {{ $teacher->name }}
-                                                                                </span>
-                                                                            @endforeach
-                                                                        </div>
-                                                                    @else
-                                                                        <span class="badge badge-warning">
-                                                                            {{ __('messages.no_teachers_assigned') }}
-                                                                        </span>
-                                                                    @endif
-                                                                </td>
-                                                                <td>
-                                                                    @if($section->status)
+                                                                    @if($teacher->status)
                                                                         <span class="badge badge-success">{{ __('messages.active') }}</span>
                                                                     @else
                                                                         <span class="badge badge-danger">{{ __('messages.inactive') }}</span>
                                                                     @endif
                                                                 </td>
-                                                                <td class="text-center">
-                                                                    <a href="{{ route('sections.edit', $section->id) }}" class="btn btn-info btn-sm">
+                                                                <td>
+                                                                    <a href="{{ route('teachers.edit', $teacher->id) }}" class="btn btn-info btn-sm">
                                                                         <i class="fas fa-edit"></i>
                                                                     </a>
                                                                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                                                        data-target="#deleteSectionModal{{ $section->id }}">
+                                                                        data-target="#deleteTeacherModal{{ $teacher->id }}">
                                                                         <i class="fas fa-trash"></i>
                                                                     </button>
                                                                 </td>
                                                             </tr>
                                                         @empty
                                                             <tr>
-                                                                <td colspan="6" class="text-center">{{ __('messages.no_sections_found') }}</td>
+                                                                <td colspan="9" class="text-center">{{ __('messages.no_teachers_found') }}</td>
                                                             </tr>
                                                         @endforelse
                                                     </tbody>
@@ -147,26 +107,26 @@
         </div>
     </section>
 
-    <!-- Delete Section Modals -->
+    <!-- Delete Teacher Modals -->
     @foreach($grades as $grade)
-        @foreach($grade->sections as $section)
-            <div class="modal fade" id="deleteSectionModal{{ $section->id }}" tabindex="-1" role="dialog" 
-                aria-labelledby="deleteSectionModalLabel{{ $section->id }}" aria-hidden="true">
+        @foreach($grade->teachers as $teacher)
+            <div class="modal fade" id="deleteTeacherModal{{ $teacher->id }}" tabindex="-1" role="dialog" 
+                aria-labelledby="deleteTeacherModalLabel{{ $teacher->id }}" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="deleteSectionModalLabel{{ $section->id }}">
-                                {{ __('messages.delete_section') }}
+                            <h5 class="modal-title" id="deleteTeacherModalLabel{{ $teacher->id }}">
+                                {{ __('messages.delete_teacher') }}
                             </h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form action="{{ route('sections.destroy', $section->id) }}" method="POST">
+                        <form action="{{ route('teachers.destroy', $teacher->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <div class="modal-body">
-                                <p>{{ __('messages.delete_section_confirm') }}: <strong>{{ $section->name }}</strong></p>
+                                <p>{{ __('messages.delete_teacher_confirm') }}: <strong>{{ $teacher->name }}</strong></p>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">
@@ -200,7 +160,7 @@
 
     <script>
         $(function () {
-            $('.section-table').DataTable({
+            $('.teacher-table').DataTable({
                 "paging": true,
                 "lengthChange": true,
                 "searching": true,
@@ -209,10 +169,7 @@
                 "autoWidth": false,
                 "responsive": true,
                 "buttons": ["copy", "csv", "excel", "pdf", "print"]
-            }).buttons().container().appendTo('.section-table_wrapper .col-md-6:eq(0)');
-
-            // Show first grade's sections by default
-            $('#collapse{{ $grades->first()->id }}').addClass('show');
+            });
         });
     </script>
 @endsection

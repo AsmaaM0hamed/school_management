@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\BackEnd\Classroom;
 use App\Models\BackEnd\Grade;
 use App\Models\BackEnd\Section;
+use App\Models\BackEnd\Teacher;
 use Illuminate\Http\Request;
 
 class SectionController extends Controller
@@ -20,8 +21,12 @@ class SectionController extends Controller
 
     public function create()
     {
+        $teachers = Teacher::where('status', 1)
+                         ->with('specialization')
+                         ->get();
         $grades = Grade::all();
-        return view('backend.sections.create', compact('grades'));
+        
+        return view('backend.sections.create', compact('grades', 'teachers'));
     }
 
     public function store(Request $request)
@@ -30,9 +35,13 @@ class SectionController extends Controller
             'name' => 'required',
             'grade_id' => 'required|exists:grades,id',
             'classroom_id' => 'required|exists:classrooms,id',
+            'teacher_ids' => 'required|array',
+            'teacher_ids.*' => 'exists:teachers,id'
         ]);
 
-        Section::create($request->all());
+        $section = Section::create($request->except('teacher_ids'));
+        $section->teachers()->attach($request->teacher_ids);
+        
         return redirect()->route('sections.index')->with('success', __('messages.added_successfully'));
     }
 
@@ -40,7 +49,11 @@ class SectionController extends Controller
     {
         $grades = Grade::all();
         $classrooms = Classroom::where('grade_id', $section->grade_id)->get();
-        return view('backend.sections.edit', compact('section', 'grades', 'classrooms'));
+        $teachers = Teacher::where('status', 1)
+                         ->with('specialization')
+                         ->get();
+        
+        return view('backend.sections.edit', compact('section', 'grades', 'classrooms', 'teachers'));
     }
 
     public function update(Request $request, Section $section)
@@ -49,9 +62,13 @@ class SectionController extends Controller
             'name' => 'required',
             'grade_id' => 'required|exists:grades,id',
             'classroom_id' => 'required|exists:classrooms,id',
+            'teacher_ids' => 'required|array',
+            'teacher_ids.*' => 'exists:teachers,id'
         ]);
 
-        $section->update($request->all());
+        $section->update($request->except('teacher_ids'));
+        $section->teachers()->sync($request->teacher_ids);
+        
         return redirect()->route('sections.index')->with('success', __('messages.updated_successfully'));
     }
 

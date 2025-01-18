@@ -7,25 +7,23 @@
 @endsection
 
 @section('title')
-    {{ __('messages.grades') }}
+    {{ __('messages.specializations') }}
 @endsection
 
 @section('page_name')
-    {{ __('messages.grades') }}
+    {{ __('messages.specializations') }}
 @endsection
 
 @section('content')
 <div class="content-wrapper" style="margin-left: 0;">
-   
-
     <section class="content">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addGradeModal">
-                                <i class="fas fa-plus"></i> {{ __('messages.add_grade') }}
+                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addSpecializationModal">
+                                <i class="fas fa-plus"></i> {{ __('messages.add_specialization') }}
                             </button>
                         </div>
                         <div class="card-body">
@@ -34,32 +32,30 @@
                                     <tr>
                                         <th>#</th>
                                         <th>{{ __('messages.name') }}</th>
-                                        <th>{{ __('messages.code') }}</th>
-                                        <th>{{ __('messages.notes') }}</th>
+                                        <th>{{ __('messages.teachers_count') }}</th>
                                         <th>{{ __('messages.actions') }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse($grades as $grade)
+                                    @forelse($specializations as $specialization)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $grade->name }}</td>
-                                            <td>{{ $grade->code }}</td>
-                                            <td>{{ $grade->notes ?? '-' }}</td>
+                                            <td>{{ $specialization->name }}</td>
+                                            <td>{{ $specialization->teachers_count }}</td>
                                             <td>
                                                 <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
-                                                    data-target="#editGradeModal{{ $grade->id }}">
+                                                    data-target="#editSpecializationModal{{ $specialization->id }}">
                                                     <i class="fas fa-edit"></i>
                                                 </button>
                                                 <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                                    data-target="#deleteGradeModal{{ $grade->id }}">
+                                                    data-target="#deleteSpecializationModal{{ $specialization->id }}">
                                                     <i class="fas fa-trash"></i>
                                                 </button>
                                             </td>
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="5" class="text-center">{{ __('messages.no_grades_found') }}</td>
+                                            <td colspan="4" class="text-center">{{ __('messages.no_specializations_found') }}</td>
                                         </tr>
                                     @endforelse
                                 </tbody>
@@ -71,30 +67,22 @@
         </div>
     </section>
 
-    <!-- Add Grade Modal -->
-    <div class="modal fade" id="addGradeModal" tabindex="-1" role="dialog" aria-labelledby="addGradeModalLabel" aria-hidden="true">
+    <!-- Add Specialization Modal -->
+    <div class="modal fade" id="addSpecializationModal" tabindex="-1" role="dialog" aria-labelledby="addSpecializationModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="addGradeModalLabel">{{ __('messages.add_grade') }}</h5>
+                    <h5 class="modal-title" id="addSpecializationModalLabel">{{ __('messages.add_specialization') }}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ route('grades.store') }}" method="POST">
+                <form action="{{ route('specializations.store') }}" method="POST">
                     @csrf
                     <div class="modal-body">
                         <div class="form-group">
                             <label>{{ __('messages.name') }}</label>
                             <input type="text" name="name" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label>{{ __('messages.code') }}</label>
-                            <input type="text" name="code" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label>{{ __('messages.notes') }}</label>
-                            <textarea name="notes" class="form-control" rows="3"></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -106,34 +94,27 @@
         </div>
     </div>
 
-    <!-- Edit Grade Modals -->
-    @foreach($grades as $grade)
-        <div class="modal fade" id="editGradeModal{{ $grade->id }}" tabindex="-1" role="dialog" aria-labelledby="editGradeModalLabel{{ $grade->id }}" aria-hidden="true">
+    <!-- Edit Specialization Modals -->
+    @foreach($specializations as $specialization)
+        <div class="modal fade" id="editSpecializationModal{{ $specialization->id }}" tabindex="-1" role="dialog" 
+            aria-labelledby="editSpecializationModalLabel{{ $specialization->id }}" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="editGradeModalLabel{{ $grade->id }}">
-                            {{ __('messages.edit_grade') }}
+                        <h5 class="modal-title" id="editSpecializationModalLabel{{ $specialization->id }}">
+                            {{ __('messages.edit_specialization') }}
                         </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action="{{ route('grades.update', $grade->id) }}" method="POST">
+                    <form action="{{ route('specializations.update', $specialization->id) }}" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="modal-body">
                             <div class="form-group">
                                 <label>{{ __('messages.name') }}</label>
-                                <input type="text" name="name" value="{{ $grade->name }}" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label>{{ __('messages.code') }}</label>
-                                <input type="text" name="code" value="{{ $grade->code }}" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label>{{ __('messages.notes') }}</label>
-                                <textarea name="notes" class="form-control" rows="3">{{ $grade->notes }}</textarea>
+                                <input type="text" name="name" value="{{ $specialization->name }}" class="form-control" required>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -150,30 +131,36 @@
         </div>
     @endforeach
 
-    <!-- Delete Grade Modals -->
-    @foreach($grades as $grade)
-        <div class="modal fade" id="deleteGradeModal{{ $grade->id }}" tabindex="-1" role="dialog" aria-labelledby="deleteGradeModalLabel{{ $grade->id }}" aria-hidden="true">
+    <!-- Delete Specialization Modals -->
+    @foreach($specializations as $specialization)
+        <div class="modal fade" id="deleteSpecializationModal{{ $specialization->id }}" tabindex="-1" role="dialog" 
+            aria-labelledby="deleteSpecializationModalLabel{{ $specialization->id }}" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="deleteGradeModalLabel{{ $grade->id }}">
-                            {{ __('messages.delete_grade') }}
+                        <h5 class="modal-title" id="deleteSpecializationModalLabel{{ $specialization->id }}">
+                            {{ __('messages.delete_specialization') }}
                         </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action="{{ route('grades.destroy', $grade->id) }}" method="POST">
+                    <form action="{{ route('specializations.destroy', $specialization->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
                         <div class="modal-body">
-                            <p>{{ __('messages.delete_grade_confirm') }}: <strong>{{ $grade->name }}</strong></p>
+                            <p>{{ __('messages.delete_specialization_confirm') }}: <strong>{{ $specialization->name }}</strong></p>
+                            @if($specialization->teachers_count > 0)
+                                <div class="alert alert-warning">
+                                    {{ __('messages.cannot_delete_related') }}
+                                </div>
+                            @endif
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">
                                 {{ __('messages.close') }}
                             </button>
-                            <button type="submit" class="btn btn-danger">
+                            <button type="submit" class="btn btn-danger" {{ $specialization->teachers_count > 0 ? 'disabled' : '' }}>
                                 {{ __('messages.delete') }}
                             </button>
                         </div>
@@ -186,19 +173,13 @@
 @endsection
 
 @section('scripts')
-    <!-- DataTables & Plugins -->
+    <!-- DataTables -->
     <script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
     <script src="{{ asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
     <script src="{{ asset('plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
-    <script src="{{ asset('plugins/jszip/jszip.min.js') }}"></script>
-    <script src="{{ asset('plugins/pdfmake/pdfmake.min.js') }}"></script>
-    <script src="{{ asset('plugins/pdfmake/vfs_fonts.js') }}"></script>
-    <script src="{{ asset('plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
-    <script src="{{ asset('plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
-    <script src="{{ asset('plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
 
     <script>
         $(function () {
@@ -206,7 +187,7 @@
                 "responsive": true,
                 "lengthChange": false,
                 "autoWidth": false,
-                "buttons": ["copy", "csv", "excel", "pdf", "print"]
+                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         });
     </script>
