@@ -26,25 +26,12 @@ class Grade extends Model
         'is_active' => 'boolean',
     ];
 
-    // علاقة المرحلة الدراسية مع نفسها (المرحلة الأب)
-    public function parent()
-    {
-        return $this->belongsTo(Grade::class, 'grade_id');
-    }
-
-    // علاقة المرحلة الدراسية مع المراحل الفرعية
-    public function children()
-    {
-        return $this->hasMany(Grade::class, 'grade_id');
-    }
-
-    // علاقة المرحلة الدراسية مع الفصول
     public function classrooms()
     {
         return $this->hasMany(Classroom::class);
     }
 
-    // علاقة المرحلة الدراسية مع المدرسين
+
     public function teachers()
     {
         return $this->hasMany(Teacher::class);
