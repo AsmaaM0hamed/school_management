@@ -121,17 +121,16 @@ textarea.form-control {
     color: #495057;
 }
 
-/* تنسيق خاص بقسم الأب */
+
 .bg-primary {
     background-color: #007bff !important;
 }
 
-/* تنسيق خاص بقسم الأم */
+
 .bg-info {
     background-color: #17a2b8 !important;
 }
 
-/* تحسين المسافات بين العناصر */
 .mb-4 {
     margin-bottom: 2rem !important;
 }
@@ -140,7 +139,6 @@ textarea.form-control {
     margin-top: 2rem !important;
 }
 
-/* تنسيق الأيقونات */
 .fas {
     margin-right: 8px;
 }
@@ -208,7 +206,6 @@ textarea.form-control {
     color: #6e707e;
 }
 
-/* Parent sections */
 .parent-section {
     background: #fff;
     border-radius: 8px;
@@ -231,7 +228,7 @@ textarea.form-control {
     background: linear-gradient(to right, #36b9cc, #258391);
 }
 
-/* Form styles */
+
 .form-group {
     margin-bottom: 1rem;
 }
@@ -286,7 +283,7 @@ textarea.form-control {
     display: block;
 }
 
-/* Select styles */
+
 select.form-control {
     padding-right: 2rem;
     background: #fff url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3e%3cpath fill='%235a5c69' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right .75rem center/8px 10px;
@@ -295,7 +292,6 @@ select.form-control {
     appearance: none;
 }
 
-/* Color variations for different sections */
 .info-box.basic-info {
     border-left: 4px solid #4e73df;
 }
@@ -323,7 +319,6 @@ select.form-control {
     border-bottom-color: #f6c23e;
 }
 
-/* Modal styles */
 .modal-header {
     background: linear-gradient(to right, #4e73df, #224abe);
     color: white;
@@ -351,7 +346,6 @@ select.form-control {
     background-color: #f8f9fc;
 }
 
-/* Action buttons */
 .action-buttons {
     margin-top: 20px;
     padding: 15px;
@@ -378,7 +372,7 @@ select.form-control {
     margin-right: 5px;
 }
 
-/* Breadcrumb styling */
+
 .breadcrumb {
     background: transparent;
     padding: 0;
@@ -394,7 +388,7 @@ select.form-control {
     color: #858796;
 }
 
-/* Card header */
+
 .card-header {
     border-bottom: 1px solid rgba(255,255,255,0.1);
 }
