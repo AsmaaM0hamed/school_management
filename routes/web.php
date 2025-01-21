@@ -7,6 +7,7 @@ use App\Http\Controllers\Backend\SectionController;
 use App\Http\Controllers\Backend\TeacherController;
 use App\Http\Controllers\Backend\SpecializationController;
 use App\Http\Controllers\Backend\ParentController;
+use App\Http\Controllers\Backend\StudentController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -42,6 +43,11 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function() {
         
         // Parents Routes
         Route::resource('parents', ParentController::class);
+        
+        // Students Routes
+        Route::resource('students', StudentController::class);
+        Route::get('students/get-classrooms/{grade_id}', [StudentController::class, 'getClassrooms']);
+        Route::get('students/get-sections/{classroom_id}', [StudentController::class, 'getSections']);
     });
 });
 

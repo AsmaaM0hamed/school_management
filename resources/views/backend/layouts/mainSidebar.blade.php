@@ -50,6 +50,13 @@
                 </li>
 
                 <li class="nav-item">
+                    <a href="{{ route('students.index') }}" class="nav-link {{ request()->routeIs('students.index') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-user-graduate"></i>
+                        <p>{{ __('messages.students') }}</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
                     <a href="{{ route('teachers.index') }}" class="nav-link {{ request()->routeIs('teachers.index') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-chalkboard-teacher"></i>
                         <p>{{ __('messages.teachers') }}</p>

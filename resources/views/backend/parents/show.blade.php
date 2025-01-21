@@ -110,15 +110,15 @@
                                                 <ul class="info-list">
                                                     <li>
                                                         <span class="info-label">{{ __('messages.nationality') }}</span>
-                                                        <span class="info-value">{{ $parent->fatherNationality->name }}</span>
+                                                        <span class="info-value">{{ $parent->father_nationality }}</span>
                                                     </li>
                                                     <li>
                                                         <span class="info-label">{{ __('messages.blood_type') }}</span>
-                                                        <span class="info-value">{{ $parent->fatherBloodType->name }}</span>
+                                                        <span class="info-value">{{ $parent->father_blood_type }}</span>
                                                     </li>
                                                     <li>
                                                         <span class="info-label">{{ __('messages.religion') }}</span>
-                                                        <span class="info-value">{{ $parent->fatherReligion->name }}</span>
+                                                        <span class="info-value">{{ $parent->father_religion }}</span>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -179,15 +179,15 @@
                                                 <ul class="info-list">
                                                     <li>
                                                         <span class="info-label">{{ __('messages.nationality') }}</span>
-                                                        <span class="info-value">{{ $parent->motherNationality->name }}</span>
+                                                        <span class="info-value">{{ $parent->mother_nationality }}</span>
                                                     </li>
                                                     <li>
                                                         <span class="info-label">{{ __('messages.blood_type') }}</span>
-                                                        <span class="info-value">{{ $parent->motherBloodType->name }}</span>
+                                                        <span class="info-value">{{ $parent->mother_blood_type }}</span>
                                                     </li>
                                                     <li>
                                                         <span class="info-label">{{ __('messages.religion') }}</span>
-                                                        <span class="info-value">{{ $parent->motherReligion->name }}</span>
+                                                        <span class="info-value">{{ $parent->mother_religion }}</span>
                                                     </li>
                                                 </ul>
                                             </div>

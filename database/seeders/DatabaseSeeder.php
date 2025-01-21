@@ -6,6 +6,8 @@ use Illuminate\Database\Seeder;
 use Database\Seeders\SchoolSeeder;
 use Database\Seeders\SpecializationSeeder;
 use Database\Seeders\ReferenceTablesSeeder;
+use Database\Seeders\ParentSeeder;
+use Database\Seeders\StudentSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,6 +20,8 @@ class DatabaseSeeder extends Seeder
             SchoolSeeder::class,
             SpecializationSeeder::class,
             ReferenceTablesSeeder::class,
+            ParentSeeder::class,     // Add parents first
+            StudentSeeder::class,    // Then students (since they depend on parents)
         ]);
     }
 }
