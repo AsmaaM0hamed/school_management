@@ -42,37 +42,31 @@ class Student extends Authenticatable
         'birth_date',
     ];
 
-    // العلاقة مع الصف الدراسي
     public function grade()
     {
         return $this->belongsTo(Grade::class);
     }
 
-    // العلاقة مع الفصل
     public function classroom()
     {
         return $this->belongsTo(Classroom::class);
     }
 
-    // العلاقة مع المجموعة
     public function section()
     {
         return $this->belongsTo(Section::class);
     }
 
-    // العلاقة مع ولي الأمر
     public function parent()
     {
         return $this->belongsTo(ParentModel::class, 'parent_id');
     }
 
-    // تشفير كلمة المرور
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = bcrypt($value);
     }
 
-    // دالة مساعدة للحصول على الحالة الدراسية
     public function getStatusLabelAttribute()
     {
         return match($this->status) {

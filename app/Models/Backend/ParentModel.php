@@ -15,7 +15,6 @@ class ParentModel extends Authenticatable
     protected $fillable = [
         'email',
         'password',
-        // معلومات الأب
         'father_name',
         'father_national_id',
         'father_passport_id',
@@ -25,7 +24,6 @@ class ParentModel extends Authenticatable
         'father_blood_type_id',
         'father_religion_id',
         'father_address',
-        // معلومات الأم
         'mother_name',
         'mother_national_id',
         'mother_passport_id',
@@ -53,13 +51,11 @@ class ParentModel extends Authenticatable
         'mother_religion_id' => 'integer',
     ];
 
- 
     public function students()
     {
         return $this->hasMany(Student::class, 'parent_id');
     }
 
- 
     public function fatherNationality()
     {
         return $this->belongsTo(Nationality::class, 'father_nationality_id');
@@ -69,7 +65,6 @@ class ParentModel extends Authenticatable
     {
         return $this->belongsTo(Nationality::class, 'mother_nationality_id');
     }
-
 
     public function fatherBloodType()
     {
@@ -81,7 +76,6 @@ class ParentModel extends Authenticatable
         return $this->belongsTo(BloodType::class, 'mother_blood_type_id');
     }
 
- 
     public function fatherReligion()
     {
         return $this->belongsTo(Religion::class, 'father_religion_id');

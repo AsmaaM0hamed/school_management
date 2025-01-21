@@ -11,7 +11,6 @@ class SchoolSeeder extends Seeder
 {
     public function run()
     {
-        // إضافة المراحل الدراسية
         $grades = [
             [
                 'name' => 'المرحلة الابتدائية',
@@ -36,7 +35,6 @@ class SchoolSeeder extends Seeder
         foreach ($grades as $grade) {
             $gradeModel = Grade::create($grade);
 
-            // إضافة الصفوف لكل مرحلة
             if ($grade['code'] === 'PRI') {
                 $classrooms = [
                     ['name' => 'الصف الأول الابتدائي', 'code' => 'PRI1'],
@@ -63,7 +61,6 @@ class SchoolSeeder extends Seeder
             foreach ($classrooms as $classroom) {
                 $classroomModel = $gradeModel->classrooms()->create($classroom);
 
-                // إضافة الفصول لكل صف
                 $sections = [
                     ['name' => 'فصل ' . $classroom['code'] . '-A', 'status' => true],
                     ['name' => 'فصل ' . $classroom['code'] . '-B', 'status' => true],

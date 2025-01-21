@@ -196,7 +196,6 @@
 @push('scripts')
 <script>
     $(document).ready(function() {
-        // تحميل الفصول عند اختيار المرحلة
         $('#grade_id').on('change', function() {
             var gradeId = $(this).val();
             if (gradeId) {
@@ -222,7 +221,6 @@
             }
         });
 
-        // تحميل الأقسام عند اختيار الفصل
         $('#classroom_id').on('change', function() {
             var classroomId = $(this).val();
             if (classroomId) {
@@ -244,7 +242,6 @@
             }
         });
 
-        // تحسين شكل قائمة اختيار ولي الأمر
         $('#parent_id').select2({
             placeholder: "{{ __('messages.select_parent') }}",
             allowClear: true,
