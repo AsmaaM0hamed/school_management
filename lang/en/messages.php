@@ -217,6 +217,23 @@ return [
     'error_while_updating_student' => 'Error While Updating Student',
     'error_while_deleting_student' => 'Error While Deleting Student',
 
+    // Promotions
+    'promotions' => 'Promotions',
+    'promotions_list' => 'Promotions List',
+    'add_promotion' => 'Add Promotion',
+    'student' => 'Student',
+    'from_grade' => 'From Grade',
+    'to_grade' => 'To Grade',
+    'from_section' => 'From Section',
+    'to_section' => 'To Section',
+    'from_class' => 'From Class',
+    'to_class' => 'To Class',
+    'promotion_date' => 'Promotion Date',
+    'students_promoted_successfully' => 'All students in the selected section have been promoted successfully.',
+    'manage_promotions' => 'Manage Promotions',
+    'revert' => 'Revert',
+    'promotion_reverted_successfully' => 'Promotion reverted successfully.',
+
     // Success Messages
     'success' => 'Success',
     'created' => 'Created Successfully',
@@ -273,4 +290,18 @@ return [
     'parent_details' => 'Parent Details',
     'back_to_parents' => 'Back to Parents List',
     'edit_parent_info' => 'Edit Parent Information',
+       // Promotions
+       'manage_promotions' => 'Manage Promotions',
+       'promotions_list' => 'Promotions List',
+       'student' => 'Student',
+       'from_class' => 'From Class',
+       'to_class' => 'To Class',
+       'promotion_date' => 'Promotion Date',
+       'revert' => 'Revert',
+       'bulk_revert' => 'Bulk Revert',
+       'confirm_bulk_revert' => 'Are you sure you want to revert the selected promotions?',
+       'confirm_revert' => 'Are you sure you want to revert this promotion?',
+       'promotions_reverted_successfully' => 'Promotions reverted successfully',
+       'no_promotions_selected' => 'No promotions selected',
+       'select_all' => 'Select All',
 ];

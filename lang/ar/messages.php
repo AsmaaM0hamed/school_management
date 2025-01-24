@@ -228,6 +228,23 @@ return [
     'created_at' => 'تاريخ الإنشاء',
     'updated_at' => 'تاريخ التحديث',
 
+    // Promotions
+    'promotions' => 'الترقيات',
+    'promotions_list' => 'قائمة الترقيات',
+    'add_promotion' => 'إضافة ترقية',
+    'student' => 'الطالب',
+    'from_class' => 'من الفصل',
+    'to_class' => 'إلى الفصل',
+    'from_grade' => 'من المرحلة',
+    'to_grade' => 'إلى المرحلة',
+    'from_section' => 'من القسم',
+    'to_section' => 'إلى القسم',
+    'promotion_date' => 'تاريخ الترقية',
+    'manage_promotions' => 'إدارة الترقيات',
+    'revert' => 'تراجع',
+    'promotion_reverted_successfully' => 'تم التراجع عن الترقية بنجاح.',
+    'students_promoted_successfully' => 'تمت ترقية جميع الطلاب في القسم المحدد بنجاح.',
+
     // Success Messages
     'success' => 'تم بنجاح',
     'created_successfully' => 'تم الإنشاء بنجاح',
@@ -263,4 +280,18 @@ return [
     'student_updated_successfully' => 'تم تحديث بيانات الطالب بنجاح',
     'error_while_updating_student' => 'حدث خطأ أثناء تحديث بيانات الطالب',
     'leave_blank_password' => 'اترك كلمة المرور فارغة إذا كنت لا تريد تغييرها',
+ // Promotions
+ 'manage_promotions' => 'إدارة الترقيات',
+ 'promotions_list' => 'قائمة الترقيات',
+ 'student' => 'الطالب',
+ 'from_class' => 'من الصف',
+ 'to_class' => 'إلى الصف',
+ 'promotion_date' => 'تاريخ الترقية',
+ 'revert' => 'تراجع',
+ 'bulk_revert' => 'تراجع جماعي',
+ 'confirm_bulk_revert' => 'هل أنت متأكد من تراجع الترقيات المحددة؟',
+ 'confirm_revert' => 'هل أنت متأكد من التراجع عن هذه الترقية؟',
+ 'promotions_reverted_successfully' => 'تم التراجع عن الترقيات بنجاح',
+ 'no_promotions_selected' => 'لم يتم تحديد أي ترقيات',
+ 'select_all' => 'تحديد الكل',
 ];
