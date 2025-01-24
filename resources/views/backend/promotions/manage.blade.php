@@ -3,20 +3,12 @@
 @section('title')
     {{ __('messages.manage_promotions') }}
 @endsection
+section('page_name')
+    {{ __('messages.manage_promotions') }}
+@endsection
 
 @section('content')
 <div class="container-fluid">
-    <div class="row mb-2">
-        <div class="col-sm-6">
-            <h1>{{ __('messages.manage_promotions') }}</h1>
-        </div>
-        <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="{{ route('backend.dashboard') }}">{{ __('messages.dashboard') }}</a></li>
-                <li class="breadcrumb-item active">{{ __('messages.manage_promotions') }}</li>
-            </ol>
-        </div>
-    </div>
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">{{ __('messages.promotions_list') }}</h3>
